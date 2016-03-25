@@ -1,0 +1,6 @@
+start:
+mov A,2
+mov B,3
+push A
+push B
+hlt

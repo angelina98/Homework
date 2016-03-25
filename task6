@@ -1,0 +1,16 @@
+mov b,4
+call program
+program:
+mov c, 0
+mov a, 1
+fact:
+inc c
+mul c
+cmp c, b
+jnz fact
+mov b,0
+mov c,0
+mov d,0
+jmp next_program
+next_program:
+hlt

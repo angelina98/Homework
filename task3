@@ -1,0 +1,10 @@
+jmp start
+data: db "2"
+db "3"
+start:
+mov c,data
+mov b,c
+inc c
+add c,b
+mov a,c
+hlt

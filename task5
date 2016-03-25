@@ -1,0 +1,57 @@
+mov a, 174
+call program
+hlt
+
+program:
+mov b, a
+div 100
+push a
+mul 100
+sub b,a
+mov a,b
+div 10
+push a
+mul 10
+sub b, a
+mov a,b
+
+prm:
+mov d,b
+pop a
+mov c,a
+pop a
+mov b,a
+mov a,d
+push a
+mov a,c
+push a
+mov a,b
+mov b,253
+
+c1:
+cmp a,0
+jnz output
+c2:
+inc b
+pop a
+cmp a,0
+jnz output
+c3:
+inc b
+pop a
+jmp output
+
+next:
+pop a
+
+output:
+add a, 48
+mov [b], a
+inc b
+cmp b,0
+jz end
+cmp b,255
+jbe next
+end:
+ret
+

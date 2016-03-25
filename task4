@@ -1,0 +1,14 @@
+jmp start
+data: db "02/03"
+db 0
+start:
+mov a,data
+mov c,232
+print:
+mov d,[a]
+mov [c],d
+inc a
+inc c
+cmp b,[a]
+jnz print
+hlt

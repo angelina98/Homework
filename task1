@@ -1,0 +1,4 @@
+start:
+Mov A,2
+Mov B,3
+hlt
