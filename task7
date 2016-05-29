@@ -1,0 +1,110 @@
+ MOV A, 0   ;Число на входе
+   CMP A, 0
+   JZ ZERO
+   CMP A, 6
+   JAE writeStop
+  MOV B,A  
+null:  
+PUSH A 
+   MOV D, 232
+   ADD B, 48
+   MOV [D], B
+   MOV B,A
+PrintOperation:
+  MOV D, 233
+  MOV [D], 33
+  INC D
+  MOV [D], 61
+  MOV C, 49
+Numbers:
+  INC D
+  MOV [D], C
+  INC C
+  INC D
+  MOV [D], 42
+  DEC A
+  CMP A,0
+  JA Numbers
+  MOV [D], 61
+  POP A
+ multi:
+  DEC B
+  CMP B,0
+  JBE printAns
+  MUL B
+  JMP multi  
+ZERO:
+  MOV A,1
+  JMP null
+printAns:
+ MOV B,A
+hundred:
+ DIV 100
+ PUSH A
+ MUL 100
+ SUB B,A
+ MOV A,B
+ DIV 10
+ PUSH A
+ MUL 10
+ SUB B,A
+ MOV A,B
+one:
+ MOV D,B
+ POP A
+ MOV C,A
+ POP A
+ MOV B,A
+ MOV A,D
+ PUSH A
+ MOV A,C
+ PUSH A
+ MOV A,B
+ MOV B,253
+writeAns:
+ CMP A,0
+ JNZ next1		
+out1:
+ INC B
+ POP A
+ CMP A,0
+ JNZ next1
+out2:
+ INC B
+ POP A
+next1:
+ MOV D,A
+ MOV A,0
+ JMP cmpD
+next2:
+ POP A
+ MOV D,A
+ MOV A,0
+cmpD: 
+ CMP D,A
+ JZ output
+ INC A
+ JMP cmpD
+output:
+  ADD A, 48
+  MOV [B],A
+ INC B
+ CMP B,0
+ JZ END
+ CMP B,255
+JBE next2
+ END:
+ HLT
+stop:
+  DB "ERROR!"
+  DB 0
+writeStop:
+  MOV C, stop 
+  MOV D, 232
+printERROR:
+  MOV A, [C]
+  MOV [D], A
+  INC C
+  INC D
+  CMP B, [C]   
+  JNZ printERROR
