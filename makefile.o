@@ -1,0 +1,7 @@
+Homework: makefile.o
+          gcc -o Homework makefile.o
+
+makefile.o: Tbook.c
+            gcc -c Tbook.c
+clean: 
+       rm Homework makefile.o

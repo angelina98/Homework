@@ -17,5 +17,3 @@ c++;
 printf ("%s\n", b);
 return 0;
 }
-
-

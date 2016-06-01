@@ -12,4 +12,3 @@ days=a%365%31;
 printf ("days=%d\n",days);
 return 0;
 }
-
