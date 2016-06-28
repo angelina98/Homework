@@ -1,55 +1,69 @@
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
+#include <malloc.h>
 double f1(double);
 double f2(double);
-double a,b,c,d,t,r;
-char str[50],*n;
-int main(){
-	double x,x0;
+double a,b,c,d,t,r,o,v;
+char str[100];
+char *n;
+double *k,*h;
+double x,x0;
+int i,j,q;
+int main()
+{
 		printf("введите уравнение\n");
-		scanf("%s",str);
+		n=gets(str);
+		o=strlen(str);
+		k=(double*)malloc(o*sizeof(double));//Массив коэффициентов при х
+		char *istr;
+		istr=strtok(str,"+");//Разбиение на подстроки:
+        while (istr!= NULL)// Выделение последующих частей
+        {
+         printf("%s\n",istr);// Вывод очередной выделенной части
+             double *g;//Нахождение коэффициентов при х:
+             g=strtok(istr,"x");
+             i=0;
+             while (g!=NULL)
+             {
+                k[i]==g;
+                if (g=0)
+                	k[i]=1;
+                i++;
+                g=strtok(NULL,"x");
+             }
+             v=strlen(strtok(istr,"^"))+1;//Нахождение степени х
+             while (strtok(istr,"^")!=0)
+             {
+                 strcpy(h[q],strtok(istr,"^")+v);
+                 q++;
+              }
+         istr=strtok(NULL,"+");// Выделение очередной части строки
+        }
 		printf("введите начальное приближение и точность\n");
 		scanf("%lf %lf", &x0, &t);
-		f1(x)==0;
-		f2(x)==0;
 		x=x0;
 		if (f1(x)==0)
 			printf("решение уравнения: x=%.5f\n",x);
 		while(f1(x)>=t)
 		{
-			x = x-f1(x)/f2(x);
+			x=x-f1(x)/f2(x);
 	        printf("решение уравнения: x=%.5f\n",x);			
 		}
-
 	return 0;
 }
 double f1(double x)
 {
-	n=strtok(str, "+-"); 
-		while (n)
-		{
-			f1(x)=f1(x)+n; 
-			n=strtok("+-");
-		}
+	j=0;
+	while (j<=i)
+	{
+		f1(x)==f1(x)+pow(x,h[q])*k[i];
+		j++;
+	}
 	return f1(x);
 }
-double f2(double x)
+double f2(double x)//Производная
 {
-	n=strtok(str, "+-"); 
-		while (n)
-		{   switch(n)
-          {
-          	case "cosf(x)": r=-sinf(x); 
-           continue; 
-           case "sinf(x)": r=cosf(x); 
-           continue; 
-           case "tgf(x)": r=1/(pow(cosf(x),2));
-           continue;
-           case "ctgf(x)": r=-1/(pow(sinf(x),2))
-          }
-			f2(x)=f2(x)+r; 
-			n=strtok("+-");
-		}
+	f2(x)==(f1(x+t)-f1(x))/t;
 	return f2(x);
 }
