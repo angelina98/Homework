@@ -28,7 +28,7 @@ int main()
              i=0;
              while (g!=NULL)
              {
-                k[i]==g;
+                k[i]==g[i];
                 if (g=0)
                 	k[i]=1;
                 i++;
@@ -39,7 +39,7 @@ int main()
              char *ptr=strtok(istr,"^");
              while (strtok(istr,"^")!=0)
              {
-             strcpy(h[q],ptr+v);
+             strcpy(&h[q],(ptr+v));
              q++;
              }
          istr=strtok(NULL,"+");// Выделение очередной части строки
