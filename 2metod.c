@@ -4,24 +4,26 @@
 #include <malloc.h>
 double f1(double);
 double f2(double);
-double a,b,c,d,t,r,o,v;
+double a,b,c,d,t,r;
 char str[100];
 char *n;
 double *k,*h;
 double x,x0;
-int i,j,q;
+int i,j,q,v,o;
 int main()
 {
 		printf("введите уравнение\n");
 		n=gets(str);
 		o=strlen(str);
-		k=(double*)malloc(o*sizeof(double));//Массив коэффициентов при х
+		k=(double*)calloc(o,sizeof(double));//Массив коэффициентов при х
+		h=(double*)calloc(o,sizeof(double));
 		char *istr;
 		istr=strtok(str,"+");//Разбиение на подстроки:
         while (istr!= NULL)// Выделение последующих частей
         {
          printf("%s\n",istr);// Вывод очередной выделенной части
              double *g;//Нахождение коэффициентов при х
+             g=(double*)calloc(o,sizeof(double));
              g=strtok(istr,"x");
              i=0;
              while (g!=NULL)
@@ -33,11 +35,13 @@ int main()
                 g=strtok(NULL,"x");
              }
              v=strlen(strtok(istr,"^"))+1;//Нахождение степени х
+             q=0;
+             char *ptr=strtok(istr,"^");
              while (strtok(istr,"^")!=0)
              {
-                 strcpy(h[q],strtok(istr,"^")+v);
-                 q++;
-              }
+             strcpy(h[q],ptr+v);
+             q++;
+             }
          istr=strtok(NULL,"+");// Выделение очередной части строки
         }
 		printf("введите начальное приближение и точность\n");
