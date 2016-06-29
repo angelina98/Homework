@@ -6,14 +6,13 @@ double f1(double);
 double f2(double);
 double a,b,c,d,t,r;
 char str[100];
-char *n;
 double *k,*h;
 double x,x0;
 int i,j,q,v,o;
 int main()
 {
 		printf("введите уравнение\n");
-		n=gets(str);
+		fgets(str,100,stdin);
 		o=strlen(str);
 		k=(double*)calloc(o,sizeof(double));//Массив коэффициентов при х
 		h=(double*)calloc(o,sizeof(double));
@@ -21,10 +20,10 @@ int main()
 		istr=strtok(str,"+");//Разбиение на подстроки:
         while (istr!= NULL)// Выделение последующих частей
         {
-         printf("%s\n",istr);// Вывод очередной выделенной части
+        //printf("%s\n",istr);// Вывод очередной выделенной части
              double *g;//Нахождение коэффициентов при х
              g=(double*)calloc(o,sizeof(double));
-             g=strtok(istr,"x");
+             g=atof(*strtok(istr,"x"));
              i=0;
              while (g!=NULL)
              {
@@ -32,7 +31,7 @@ int main()
                 if (g=0)
                 	k[i]=1;
                 i++;
-                g=strtok(NULL,"x");
+                g=atof(*strtok(NULL,"x"));
              }
              v=strlen(strtok(istr,"^"))+1;//Нахождение степени х
              q=0;
